@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="testament">
+        <item>A collection of divinely inspired books written between 1450 B.C. and 430 B.C., the Old Testament is a historical record of God\'s people, laws, sayings and promises that function as a model for moral living and conduct.</item>
+        <item>The New Testament is a collection of twenty-seven sacred books that centre on the life, death, resurrection and teachings of Jesus Christ.</item>
+    </string-array>
+
+    <string-array name="book_description">
+        <!--Old Testament-->
+        <item>Meaning \"the beginning or origin of something\", Genesis is the first book of the Bible, recording Creation, the fall of man and the early years of the nation of Israel.</item>
+        <item>God appoints Moses to lead the Israelites out of slavery in Egypt to the Promised Land of Canaan, establishing a special relationship with them on the way to Mount Sinai.</item>
+        <item>God gives Israel rules to live by and instructions to present themselves holy before Him.</item>
+        <item>A sequel to Exodus, Numbers takes its name from two censuses (or \"numberings\") of the people of Israel, following their journey through the wilderness for forty years.</item>
+        <item>A farewell speech from Moses to the people of Israel shortly before his death, Deuteronomy recaps the promises of God and provides instructions to obey Him in the Promised Land.</item>
+        <item>A book of conquest, Joshua details the Israelites\' invasion and eventual occupation of the Promised Land through faith and action.</item>
+        <item>Israel enters a cycle of sin, suffering defeat and oppression, only to cry out to God for deliverance, who sends leaders (called \"judges\") to help them.</item>
+        <item>Occurring during some of the darkest days in Israel\'s history, Ruth follows the journey of two widows who lose everything, but find hope through God.</item>
+        <item>Israel rejects God\'s chosen leader, Samuel (a judge), and demands a king despite God\'s warnings.</item>
+        <item>The life and career of King David, who subdues Israel\'s enemies and doubles the size of the kingdom, but is not without failings.</item>
+        <item>Israel enjoys a period of peace and prosperity under King Solomon, but later splits in two after Rehoboam (his son) takes the throne.</item>
+        <item>The kings of Israel and Judah ignore God and His prophets, eventually falling captive to invading nations and are exiled to foreign lands.</item>
+        <item>Written to encourage the people returning from Babylonian exile, 1 Chronicles recaps the history and genealogy of Israel, emphasising the spiritual significance of David and future Messianic King.</item>
+        <item>A continuation of the previous book, 2 Chronicles focuses on the kings of Israel, from King Solomon and the building of the temple, to subsequent division, exile and return from captivity.</item>
+        <item>Fulfilling the promises of God, the Israelites return from exile after seventy years and rebuild the temple.</item>
+        <item>Despite local opposition, Nehemiah returns to Jerusalem from exile, rallying the people to rebuild the city walls and gates in just fifty-two days.</item>
+        <item>Occurring during the exile of Israel, Esther is a Jewish queen to a Persian king, who intercedes on behalf of her people to save them from a genocidal plot.</item>
+        <item>A righteous man named Job loses everything and suffers greatly, but remains faithful to God and is blessed abundantly.</item>
+        <item>A collection of 150 songs of worship and praise to God that includes prophecies of the coming Messiah.</item>
+        <item>The book of Proverbs contains God\'s divine wisdom, covering a variety of topics for every area of life.</item>
+        <item>Solomon\'s analysis of life, which is meaningless and empty without God.</item>
+        <item>A passionate yet gentle song of love between a husband and wife, symbolising God\'s relationship with us.</item>
+        <item>The first book of the Major Prophets, Isaiah contains warnings of God\'s coming judgement and detailed prophecies about the Messiah.</item>
+        <item>Known as the weeping prophet, Jeremiah passionately pleads with the people to repent before the coming Babylonian captivity, but is ignored.</item>
+        <item>Lamentations is a book of sadness that reflects on the destruction of Jerusalem and captivity of Israel.</item>
+        <item>Ezekiel is called by God to preach a message of judgement and deliverance for the captives living in Babylon.</item>
+        <item>Like Ezekiel, Daniel has been taken to Babylon in captivity and receives prophetic visions while serving in the courts of the king.</item>
+        <item>The first book of the Minor Prophets, Hosea is a tragic love story that demonstrates God\'s unending love for His people despite their unfaithfulness.</item>
+        <item>Joel warns the people to repent and turn back to God before judgement falls upon them.</item>
+        <item>A shepherd named Amos prophesies to the northern kingdom which has become self-sufficient and indifferent towards God during a time of great prosperity.</item>
+        <item>Only one chapter, Obadiah demonstrates God\'s ongoing protection of His people and coming judgement on the nation of Edom, which was indifferent during the Babylonian plunder of Jerusalem.</item>
+        <item>A reluctant prophet, Jonah is sent by God to Nineveh, but refuses and learns the futility of it in the belly of a giant fish.</item>
+        <item>Micah warns of the coming judgement that will eventually exile the nation, and includes some of the clearest predictions of the Messiah.</item>
+        <item>Nahum is the second prophet sent to Nineveh (Jonah being the first) to preach God\'s judgement on the Assyrian city and empire.</item>
+        <item>God answers Habakkuk\'s complaints of wickedness and injustice in the land.</item>
+        <item>Written shortly before the fall of Judah (Southern Kingdom of Israel) to Babylonian conquest, Zephaniah warns the people and the surrounding nations that the day of the Lord is near.</item>
+        <item>Written after the Babylonian exile, work to rebuild the temple in Jerusalem had halted due to opposition and spiritual apathy, so Haggai motivates the people to finish.</item>
+        <item>Zechariah ministered with Haggai after the 70-year exile, encouraging the remnant to return to God.</item>
+        <item>The last book of the Old Testament, Malachi is a beautiful expression of God\'s love for a nation that continues to disobey Him.</item>
+        <!--New Testament-->
+        <item>The first book of the New Testament, the Gospel of Matthew was primarily written for the Jews and references many Old Testament prophecies that were fulfilled by Jesus.</item>
+        <item>Mark is the shortest Gospel, which emphasises Jesus\' servanthood and miracles.</item>
+        <item>Unlike the other Gospel writers, Luke was a Gentile who wrote an account of Jesus\' life for those outside the Jewish faith.</item>
+        <item>The last of the four Gospels, John is an eyewitness account of Jesus\' ministry that focuses on the deeper meaning of events surrounding Christ\'s life, death and resurrection.</item>
+        <item>A historical narrative of the early church which was empowered by the Holy Spirit to spread the Good News.</item>
+        <item>An epistle to the believers in Rome (hence the name) where Paul planned to visit. Romans sets a theological foundation for faith through Jesus.</item>
+        <item>The first of two letters from Paul to the believers in Corinth, 1 Corinthians was written in response to divisions and problems facing the local church.</item>
+        <item>The second and final letter from Paul to the church in Corinth, 2 Corinthians deals with persisting problems facing the believers there and warns against false teachers.</item>
+        <item>A letter from Paul to the church in Galatia, the book is a foundational study that addresses the problem of Jewish legalism and the fullness of salvation found in Jesus.</item>
+        <item>Written to the church in Ephesus during Paul\'s first imprisonment, Ephesians covers a variety of subjects including the gift of grace, love and how to walk as fruitful followers of Jesus.</item>
+        <item>An encouraging letter from Paul to the church in Philippi explaining the attitude and outlook believers must have to experience the joy of the Lord.</item>
+        <item>In this letter, Paul refutes certain false teachings that are impeding the church in Colossae, reaffirming the deity and superiority of Jesus Christ.</item>
+        <item>The first of two letters to the believers in Thessalonica, Paul writes to encourage and strengthen the church, emphasising the principles of holy living through faith, hope and love.</item>
+        <item>A follow-up letter of encouragement to the persecuted church of Thessalonica, Paul reaffirms Jesus\' second coming and matters preceding that event.</item>
+        <item>A letter from Paul to a young pastor named Timothy, offering guidance and important principles for church leadership that still applies today.</item>
+        <item>The second of two letters to Timothy, the book is probably Paul\'s final chronological epistle, urging his protégé to remain strong and faithful to Jesus.</item>
+        <item>A letter of guidance from Paul to Titus to address challenges facing his leadership of the churches on the island of Crete.</item>
+        <item>Consisting of only one chapter, the book is a short but profound letter from Paul to Philemon requesting forgiveness for a runaway slave named Onesimus.</item>
+        <item>A letter urging Jewish believers not to return to their former traditions, summarising key Biblical characters and events to emphasise the hope of salvation through Jesus.</item>
+        <item>A hard-hitting letter from James, encouraging believers to have a genuine faith with an emphasis on results.</item>
+        <item>The focus of Peter\'s first letter is persecution, sharing inspiring words of comfort for Christians living as an oppressed minority in the Roman Empire.</item>
+        <item>Peter\'s second letter warns against false teachers and reaffirms important spiritual truths.</item>
+        <item>Written to oppose heretical doctrine, the first letter from John echoes the Gospel, encouraging Christians to love one another and keep Jesus\' commands.</item>
+        <item>A brief letter from John to \"the chosen lady\", urging believers to love one another and to be on guard against false teachings.</item>
+        <item>The shortest book in the Bible, 3 John commends Gaius and Demetruis for their faithful service.</item>
+        <item>A letter from Jude to address false teachings and urge Christians to defend the truth of the Good News.</item>
+        <item>Written during John\'s imprisonment on the island of Patmos, Revelation is an apocalyptic book that contains prophetic visions of the Spiritual Realms and Jesus\' return to Earth.</item>
+    </string-array>
+
+    <string-array name="possible_author">
+        <!--Old Testament-->
+        <item>Moses</item>
+        <item>Moses</item>
+        <item>Moses</item>
+        <item>Moses</item>
+        <item>Moses</item>
+        <item>Joshua &amp; possibly Phinehas</item>
+        <item>Probably Samuel</item>
+        <item>Unknown</item>
+        <item>Samuel, Nathan &amp; Gad</item>
+        <item>Unknown</item>
+        <item>Unknown</item>
+        <item>Unknown</item>
+        <item>Ezra</item>
+        <item>Ezra</item>
+        <item>Ezra</item>
+        <item>Nehemiah</item>
+        <item>Unknown</item>
+        <item>Possibly Job</item>
+        <item>David, Asaph, the sons of Korah, Solomon, Heman, Ethan &amp; Moses</item>
+        <item>Solomon, Agur &amp; Lemuel</item>
+        <item>Solomon</item>
+        <item>Solomon</item>
+        <item>Isaiah</item>
+        <item>Jeremiah</item>
+        <item>Jeremiah</item>
+        <item>Ezekiel</item>
+        <item>Daniel</item>
+        <item>Hosea</item>
+        <item>Joel</item>
+        <item>Amos</item>
+        <item>Obadiah</item>
+        <item>Jonah</item>
+        <item>Micah</item>
+        <item>Nahum</item>
+        <item>Habakkuk</item>
+        <item>Zephaniah</item>
+        <item>Haggai</item>
+        <item>Zechariah</item>
+        <item>Malachi</item>
+        <!--New Testament-->
+        <item>Matthew (Levi)</item>
+        <item>John Mark</item>
+        <item>Luke</item>
+        <item>John</item>
+        <item>Luke</item>
+        <item>Paul</item>
+        <item>Paul</item>
+        <item>Paul</item>
+        <item>Paul</item>
+        <item>Paul</item>
+        <item>Paul</item>
+        <item>Paul</item>
+        <item>Paul</item>
+        <item>Paul</item>
+        <item>Paul</item>
+        <item>Paul</item>
+        <item>Paul</item>
+        <item>Paul</item>
+        <item>Unknown</item>
+        <item>James (Jesus\' half-brother)</item>
+        <item>Peter</item>
+        <item>Peter</item>
+        <item>John</item>
+        <item>John</item>
+        <item>John</item>
+        <item>Jude (Jesus\' half-brother)</item>
+        <item>John</item>
+    </string-array>
+
+    <string-array name="probable_year_authored">
+        <!--Old Testament-->
+        <item>1450–1410 B.C.</item>
+        <item>1450–1410 B.C.</item>
+        <item>1445–1444 B.C.</item>
+        <item>1450–1410 B.C.</item>
+        <item>1407–1406 B.C.</item>
+        <item>1405–1383 B.C.</item>
+        <item>1086–1004 B.C.</item>
+        <item>1375–1050 B.C.</item>
+        <item>930 B.C.</item>
+        <item>930 B.C.</item>
+        <item>560–538 B.C.</item>
+        <item>560–538 B.C.</item>
+        <item>430 B.C.</item>
+        <item>430 B.C.</item>
+        <item>450 B.C.</item>
+        <item>445–432 B.C.</item>
+        <item>483–471 B.C.</item>
+        <item>2100–1800 B.C.</item>
+        <item>1440–586 B.C.</item>
+        <item>970–930 B.C.</item>
+        <item>935 B.C.</item>
+        <item>970–930 B.C.</item>
+        <item>700–681 B.C.</item>
+        <item>627–586 B.C.</item>
+        <item>586 B.C.</item>
+        <item>571 B.C.</item>
+        <item>535 B.C.</item>
+        <item>715 B.C.</item>
+        <item>835–796 B.C.</item>
+        <item>760–750 B.C.</item>
+        <item>627–586 B.C.</item>
+        <item>785–760 B.C.</item>
+        <item>742–687 B.C.</item>
+        <item>663–654 B.C.</item>
+        <item>612–589 B.C.</item>
+        <item>640–621 B.C.</item>
+        <item>520 B.C.</item>
+        <item>520–480 B.C.</item>
+        <item>430 B.C.</item>
+        <!--New Testament-->
+        <item>A.D. 60–65</item>
+        <item>A.D. 55–65</item>
+        <item>A.D. 60</item>
+        <item>A.D. 85–90</item>
+        <item>A.D. 63–70</item>
+        <item>A.D. 70</item>
+        <item>A.D. 55</item>
+        <item>A.D. 55–57</item>
+        <item>A.D. 49</item>
+        <item>A.D. 60</item>
+        <item>A.D. 61</item>
+        <item>A.D. 60</item>
+        <item>A.D. 51</item>
+        <item>A.D. 51</item>
+        <item>A.D. 54</item>
+        <item>A.D. 67</item>
+        <item>A.D. 65</item>
+        <item>A.D. 60</item>
+        <item>A.D. 68</item>
+        <item>A.D. 49</item>
+        <item>A.D. 65</item>
+        <item>A.D. 66</item>
+        <item>A.D. 90–95</item>
+        <item>A.D. 90–95</item>
+        <item>A.D. 90–95</item>
+        <item>A.D. 65</item>
+        <item>A.D. 95</item>
+    </string-array>
+
+    <string-array name="book_category">
+        <!--Old Testament-->
+        <item>Narrative</item>
+        <item>Narrative</item>
+        <item>Law</item>
+        <item>Narrative</item>
+        <item>Narrative</item>
+        <item>Narrative</item>
+        <item>Narrative</item>
+        <item>Narrative</item>
+        <item>Narrative</item>
+        <item>Narrative</item>
+        <item>Narrative</item>
+        <item>Narrative</item>
+        <item>Narrative</item>
+        <item>Narrative</item>
+        <item>Narrative</item>
+        <item>Narrative</item>
+        <item>Narrative</item>
+        <item>Poetry</item>
+        <item>Poetry</item>
+        <item>Wisdom Literature</item>
+        <item>Wisdom Literature</item>
+        <item>Poetry</item>
+        <item>Prophesy</item>
+        <item>Prophesy</item>
+        <item>Poetry &amp; Prophesy</item>
+        <item>Prophesy</item>
+        <item>Narrative &amp; Prophesy</item>
+        <item>Prophesy</item>
+        <item>Prophesy</item>
+        <item>Prophesy</item>
+        <item>Prophesy</item>
+        <item>Narrative</item>
+        <item>Prophesy</item>
+        <item>Prophesy</item>
+        <item>Prophesy</item>
+        <item>Prophesy</item>
+        <item>Prophesy</item>
+        <item>Prophesy</item>
+        <item>Prophesy</item>
+        <!--New Testament-->
+        <item>Gospel</item>
+        <item>Gospel</item>
+        <item>Gospel</item>
+        <item>Gospel</item>
+        <item>History</item>
+        <item>Epistle</item>
+        <item>Epistle</item>
+        <item>Epistle</item>
+        <item>Epistle</item>
+        <item>Epistle</item>
+        <item>Epistle</item>
+        <item>Epistle</item>
+        <item>Epistle</item>
+        <item>Epistle</item>
+        <item>Epistle</item>
+        <item>Epistle</item>
+        <item>Epistle</item>
+        <item>Epistle</item>
+        <item>Epistle</item>
+        <item>Epistle</item>
+        <item>Epistle</item>
+        <item>Epistle</item>
+        <item>Epistle</item>
+        <item>Epistle</item>
+        <item>Epistle</item>
+        <item>Epistle</item>
+        <item>Apocalyptic</item>
+    </string-array>
+</resources>
