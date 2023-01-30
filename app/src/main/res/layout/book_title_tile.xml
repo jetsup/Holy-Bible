@@ -3,29 +3,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:id="@+id/bookTitleTile"
     tools:ignore="HardcodedText">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/smallLogo"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="10dp"
         android:layout_width="60dp"
-        android:layout_marginBottom="10dp"
-        android:layout_height="60dp" />
+        android:layout_height="60dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp" />
 
     <RelativeLayout
         android:id="@+id/relLayout"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_toEndOf="@id/smallLogo"
-        android:layout_height="wrap_content">
+        android:layout_toEndOf="@id/smallLogo">
 
         <TextView
             android:id="@+id/bookTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Genesis"
-            android:textSize="26sp" />
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/bookDescription"
@@ -33,7 +35,15 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/bookTitle"
             android:text="This book tells more about the origin of the world we know today."
-            android:textSize="16sp" />
+            android:textSize="14sp"
+            android:textStyle="italic|normal" />
     </RelativeLayout>
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/bookDivider"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@id/relLayout"
+        android:layout_marginTop="5dp" />
 
 </RelativeLayout>

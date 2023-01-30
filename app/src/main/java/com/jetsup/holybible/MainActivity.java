@@ -3,6 +3,7 @@ package com.jetsup.holybible;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jetsup.holybible.adapters.BookTitleRecyclerViewAdapter;
@@ -17,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         bookTitleRecyclerView = findViewById(R.id.bookTitleRecyclerView);
+        bookTitleRecyclerView.setLayoutManager(new LinearLayoutManager(this)); // important
+
         titleRecyclerViewAdapter = new BookTitleRecyclerViewAdapter(MainActivity.this);
         bookTitleRecyclerView.setAdapter(titleRecyclerViewAdapter);
     }

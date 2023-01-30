@@ -3,13 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingStart="8dp"
-    android:paddingEnd="8dp"
-    tools:context=".MainActivity">
+    android:padding="10dp"
+    tools:context=".ReadActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/bookTitleRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent" />
 
 </RelativeLayout>
