@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/chapterCard"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    app:cardCornerRadius="20dp"
+    tools:ignore="HardcodedText">
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:minWidth="80dp"
+        android:minHeight="80dp"
+        android:padding="5dp">
+
+        <TextView
+            android:id="@+id/constChapterText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="Chapter"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/chapterNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/constChapterText"
+            android:layout_centerHorizontal="true"
+            android:text="150"
+            android:textSize="26sp" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
