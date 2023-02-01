@@ -1,7 +1,6 @@
 package com.jetsup.holybible;
 
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -31,21 +30,20 @@ public class SelectChapter extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).setTitle(bookTitle);
         bookIndex = getIntent().getExtras().getInt("BookIndex"); // 0 for Genesis...
 
-        Log.w(TAG, "onCreate: About to fetch");
-        aliasNames = getResources().getStringArray(R.array.filename_alias);
-        Log.w(TAG, "onCreate: Fetched");
-        chapters = getResources().getIntArray(R.array.book_chapters);
-        Log.w(TAG, "onCreate: Fetched2");
+        if (MainActivity.testament == 0) {
+            aliasNames = getResources().getStringArray(R.array.old_filename_alias);
+            chapters = getResources().getIntArray(R.array.old_book_chapters);
+        } else if (MainActivity.testament == 1) {
+            aliasNames = getResources().getStringArray(R.array.new_filename_alias);
+            chapters = getResources().getIntArray(R.array.new_book_chapters);
+        }
 
         aliasName = aliasNames[bookIndex];
         thisBookChapters = chapters[bookIndex];
 
         // retrieve the number of chapters in the particular selected book and pass it to the viewHolder
-        Log.w(TAG, "onCreate: Setting adapter");
         chapterViewAdapter = new ChapterRecyclerViewAdapter(this, bookIndex, bookTitle, thisBookChapters);
-        Log.w(TAG, "onCreate: Setting done");
 
         chapterRecyclerView.setAdapter(chapterViewAdapter);
-        Log.w(TAG, "onCreate: Activity set");
     }
 }

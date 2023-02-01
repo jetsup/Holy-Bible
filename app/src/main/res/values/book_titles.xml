@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="book_titles">
-        <!--Old Testament (1-39)-->
+    <!--Old Testament (1-39)-->
+    <string-array name="old_testament_books">
         <item>Genesis</item>
         <item>Exodus</item>
         <item>Leviticus</item>
@@ -41,7 +41,9 @@
         <item>Haggai</item>
         <item>Zechariah</item>
         <item>Malachi</item>
-        <!--New Testament (40-66)-->
+    </string-array>
+    <!--New Testament (40-66)-->
+    <string-array name="new_testament_books">
         <item>Matthew</item>
         <item>Mark</item>
         <item>Luke</item>

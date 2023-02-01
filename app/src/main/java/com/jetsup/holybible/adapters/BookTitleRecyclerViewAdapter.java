@@ -2,7 +2,6 @@ package com.jetsup.holybible.adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.jetsup.holybible.MainActivity;
 import com.jetsup.holybible.R;
 import com.jetsup.holybible.SelectChapter;
 
@@ -28,10 +28,17 @@ public class BookTitleRecyclerViewAdapter extends RecyclerView.Adapter<BookTitle
 
     public BookTitleRecyclerViewAdapter(Context context) {
         this.context = context;
-        bookTitles = Arrays.asList(context.getResources().getStringArray(R.array.book_titles));
-        bookDescription = Arrays.asList(context.getResources().getStringArray(R.array.book_description));
-        Log.w(TAG, "Books: " + bookTitles.size());
-        Log.w(TAG, "BookDescription: " + bookDescription.size());
+        loadData(context);
+    }
+
+    public void loadData(Context context) {
+        if (MainActivity.testament == 0) {
+            bookTitles = Arrays.asList(context.getResources().getStringArray(R.array.old_testament_books));
+            bookDescription = Arrays.asList(context.getResources().getStringArray(R.array.old_book_description));
+        } else if (MainActivity.testament == 1) {
+            bookTitles = Arrays.asList(context.getResources().getStringArray(R.array.new_testament_books));
+            bookDescription = Arrays.asList(context.getResources().getStringArray(R.array.new_book_description));
+        }
     }
 
     @NonNull

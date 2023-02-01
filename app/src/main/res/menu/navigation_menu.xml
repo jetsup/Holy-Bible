@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group
+        android:id="@+id/navTestament"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/navOldTestament"
+            android:title="@string/old_testament" />
+        <item
+            android:id="@+id/navNewTestament"
+            android:title="@string/new_testament" />
+    </group>
+
+    <!--TODO: Widden the gap between these two, one to be at the topmost, the other at the bottommost-->
+    <group
+        android:id="@+id/navAppConfig"
+        android:orderInCategory="23">
+        <item
+            android:id="@+id/navSettings"
+            android:icon="@drawable/baseline_settings_24"
+            android:title="@string/settings" />
+        <item
+            android:id="@+id/navAbout"
+            android:icon="@drawable/baseline_question_mark_24"
+            android:title="@string/about" />
+    </group>
+</menu>

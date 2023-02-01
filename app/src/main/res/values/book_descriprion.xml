@@ -5,7 +5,7 @@
         <item>The New Testament is a collection of twenty-seven sacred books that centre on the life, death, resurrection and teachings of Jesus Christ.</item>
     </string-array>
 
-    <string-array name="book_description">
+    <string-array name="old_book_description">
         <!--Old Testament-->
         <item>Meaning \"the beginning or origin of something\", Genesis is the first book of the Bible, recording Creation, the fall of man and the early years of the nation of Israel.</item>
         <item>God appoints Moses to lead the Israelites out of slavery in Egypt to the Promised Land of Canaan, establishing a special relationship with them on the way to Mount Sinai.</item>
@@ -46,7 +46,9 @@
         <item>Written after the Babylonian exile, work to rebuild the temple in Jerusalem had halted due to opposition and spiritual apathy, so Haggai motivates the people to finish.</item>
         <item>Zechariah ministered with Haggai after the 70-year exile, encouraging the remnant to return to God.</item>
         <item>The last book of the Old Testament, Malachi is a beautiful expression of God\'s love for a nation that continues to disobey Him.</item>
-        <!--New Testament-->
+    </string-array>
+    <!--New Testament-->
+    <string-array name="new_book_description">
         <item>The first book of the New Testament, the Gospel of Matthew was primarily written for the Jews and references many Old Testament prophecies that were fulfilled by Jesus.</item>
         <item>Mark is the shortest Gospel, which emphasises Jesus\' servanthood and miracles.</item>
         <item>Unlike the other Gospel writers, Luke was a Gentile who wrote an account of Jesus\' life for those outside the Jewish faith.</item>
@@ -76,8 +78,8 @@
         <item>Written during John\'s imprisonment on the island of Patmos, Revelation is an apocalyptic book that contains prophetic visions of the Spiritual Realms and Jesus\' return to Earth.</item>
     </string-array>
 
-    <string-array name="possible_author">
-        <!--Old Testament-->
+    <!--Old Testament-->
+    <string-array name="old_possible_author">
         <item>Moses</item>
         <item>Moses</item>
         <item>Moses</item>
@@ -117,7 +119,9 @@
         <item>Haggai</item>
         <item>Zechariah</item>
         <item>Malachi</item>
-        <!--New Testament-->
+    </string-array>
+    <!--New Testament-->
+    <string-array name="new_possible_author">
         <item>Matthew (Levi)</item>
         <item>John Mark</item>
         <item>Luke</item>
@@ -147,7 +151,8 @@
         <item>John</item>
     </string-array>
 
-    <string-array name="filename_alias">
+    <!--New Testament-->
+    <string-array name="old_filename_alias">
         <item>ge</item>
         <item>exo</item>
         <item>lev</item>
@@ -187,6 +192,9 @@
         <item>hag</item>
         <item>zec</item>
         <item>mal</item>
+    </string-array>
+    <!--New Testament-->
+    <string-array name="new_filename_alias">
         <item>mat</item>
         <item>mark</item>
         <item>luke</item>
@@ -216,7 +224,8 @@
         <item>rev</item>
     </string-array>
 
-    <integer-array name="book_chapters">
+    <!--New Testament-->
+    <integer-array name="old_book_chapters">
         <item>50</item>
         <item>40</item>
         <item>27</item>
@@ -256,6 +265,9 @@
         <item>2</item>
         <item>14</item>
         <item>4</item>
+    </integer-array>
+    <!--New Testament-->
+    <integer-array name="new_book_chapters">
         <item>28</item>
         <item>16</item>
         <item>24</item>
@@ -285,8 +297,8 @@
         <item>22</item>
     </integer-array>
 
-    <string-array name="probable_year_authored">
-        <!--Old Testament-->
+    <!--Old Testament-->
+    <string-array name="old_probable_year_authored">
         <item>1450–1410 B.C.</item>
         <item>1450–1410 B.C.</item>
         <item>1445–1444 B.C.</item>
@@ -326,7 +338,9 @@
         <item>520 B.C.</item>
         <item>520–480 B.C.</item>
         <item>430 B.C.</item>
-        <!--New Testament-->
+    </string-array>
+    <!--New Testament-->
+    <string-array name="new_probable_year_authored">
         <item>A.D. 60–65</item>
         <item>A.D. 55–65</item>
         <item>A.D. 60</item>
@@ -356,8 +370,8 @@
         <item>A.D. 95</item>
     </string-array>
 
-    <string-array name="book_category">
-        <!--Old Testament-->
+    <!--Old Testament-->
+    <string-array name="old_book_category">
         <item>Narrative</item>
         <item>Narrative</item>
         <item>Law</item>
@@ -397,7 +411,9 @@
         <item>Prophesy</item>
         <item>Prophesy</item>
         <item>Prophesy</item>
-        <!--New Testament-->
+    </string-array>
+    <!--New Testament-->
+    <string-array name="new_book_category">
         <item>Gospel</item>
         <item>Gospel</item>
         <item>Gospel</item>

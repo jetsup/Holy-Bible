@@ -43,7 +43,6 @@ public class ChapterRecyclerViewAdapter extends RecyclerView.Adapter<ChapterRecy
     @Override
     public void onBindViewHolder(@NonNull MyChapterViewHolder holder, int position) {
         holder.chapterNumber.setText(String.valueOf(chapters.get(position) + 1));
-//        holder.chapterNumber.setText();
         holder.chapterCard.setOnClickListener(v -> {
             Intent intent = new Intent();
             intent.putExtra("Chapter", holder.getAdapterPosition() + 1); // +1 for the zero index
