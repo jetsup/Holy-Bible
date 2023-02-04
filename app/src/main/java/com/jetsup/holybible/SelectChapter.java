@@ -11,7 +11,7 @@ import com.jetsup.holybible.adapters.ChapterRecyclerViewAdapter;
 import java.util.Objects;
 
 public class SelectChapter extends AppCompatActivity {
-    final String TAG = "MyTag_SC";
+    //    final String TAG = "MyTag_SC";
     String bookTitle, aliasName;
     String[] aliasNames = {};
     int[] chapters = {};

@@ -21,7 +21,7 @@ import java.util.List;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class BookTitleRecyclerViewAdapter extends RecyclerView.Adapter<BookTitleRecyclerViewAdapter.MyBookTitleVH> {
-    final String TAG = "MyTag_BtRVA";
+    //    final String TAG = "MyTag_BtRVA";
     List<String> bookTitles;
     List<String> bookDescription;
     Context context;

@@ -12,8 +12,9 @@ import com.jetsup.holybible.adapters.VerseRecyclerViewAdapter;
 import java.util.Objects;
 
 public class ReadActivity extends AppCompatActivity {
+    //    final String TAG = "MyTag";
     String bookTitle;
-    String bookFile, TAG = "MyTag";
+    String bookFile;
     VerseRecyclerViewAdapter verseAdapter;
     TextToSpeech textToSpeech;
     boolean canSpeak;

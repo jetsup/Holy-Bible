@@ -5,12 +5,14 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.ShapeDrawable;
+import android.graphics.drawable.shapes.RoundRectShape;
 import android.speech.tts.TextToSpeech;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -38,7 +40,7 @@ import java.util.Objects;
 import yuku.ambilwarna.AmbilWarnaDialog;
 
 public class VerseRecyclerViewAdapter extends RecyclerView.Adapter<VerseRecyclerViewAdapter.VerseRecyclerViewHolder> implements View.OnCreateContextMenuListener, MenuItem.OnMenuItemClickListener {
-    final String TAG = "MyTag";
+    //    final String TAG = "MyTag";
     Map<Integer, Integer> verseColor = new HashMap<>();
     int verseIndex;
     ClipboardManager clipboardManager;
@@ -119,16 +121,25 @@ public class VerseRecyclerViewAdapter extends RecyclerView.Adapter<VerseRecycler
             v.showContextMenu(50, 10);
             return true;
         });
-        Log.i(TAG, "Position: " + position);
+        Drawable bg;
         if (verseColor.containsKey(position)) {
-            Drawable background1 = ResourcesCompat.getDrawable(context.getResources(), R.drawable.circled_rectangle_outline, null);
-            Objects.requireNonNull(background1).setTint(verseColor.get(position));
-            holder.verseCardLayout.setBackground(background1);
-            Log.w(TAG, "Keys: " + verseColor);
+            bg = verseHighlightDrawable(Objects.requireNonNull(verseColor.get(position)));
+            bg.setTint(Objects.requireNonNull(verseColor.get(position)));
+
         } else {
-            Drawable background = ResourcesCompat.getDrawable(context.getResources(), R.drawable.circled_rectangle_outline, null);
-            holder.verseCardLayout.setBackground(background);
+            bg = ResourcesCompat.getDrawable(context.getResources(), R.drawable.circled_rectangle_outline, null);
         }
+        holder.verseCardLayout.setBackground(bg);
+    }
+
+    public Drawable verseHighlightDrawable(int color) {
+        RoundRectShape rectShape = new RoundRectShape(new float[]{25, 25, 25, 25, 25, 25, 25, 25}, null, null);
+        ShapeDrawable shapeDrawable = new ShapeDrawable(rectShape);
+        shapeDrawable.getPaint().setColor(color);
+        shapeDrawable.getPaint().setStyle(Paint.Style.FILL);
+        shapeDrawable.getPaint().setAntiAlias(true);
+        shapeDrawable.getPaint().setFlags(Paint.ANTI_ALIAS_FLAG);
+        return shapeDrawable;
     }
 
     @Override
@@ -148,14 +159,14 @@ public class VerseRecyclerViewAdapter extends RecyclerView.Adapter<VerseRecycler
                 @Override
                 public void onOk(AmbilWarnaDialog dialog, int color) {
                     defaultColor = color;
-                    Drawable background = ResourcesCompat.getDrawable(context.getResources(), R.drawable.circled_rectangle_outline, null);
-                    Objects.requireNonNull(background).setTint(defaultColor);
-                    v.setBackground(background);
-//                    v.setBackgroundColor(defaultColor);
+                    Drawable drawable = verseHighlightDrawable(defaultColor);
+                    Objects.requireNonNull(drawable).setTint(defaultColor);
+                    v.setBackground(drawable);
+                    v.postInvalidate();
                     verseColor.put(verseIndex, defaultColor);
-                    Log.d(TAG, "onOk: Added: " + verseIndex);
                 }
             }).show();
+            // Add the verse and the color to the shared preference
             return true;
         });
         menu.add(Menu.NONE, v.getId(), Menu.NONE, "Read Aloud").setOnMenuItemClickListener(this);
