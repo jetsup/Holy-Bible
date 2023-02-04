@@ -5,10 +5,12 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.speech.tts.TextToSpeech;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -20,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.res.ResourcesCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.jetsup.holybible.R;
@@ -27,18 +30,36 @@ import com.jetsup.holybible.R;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
-public class VerseRecyclerViewAdapter extends RecyclerView.Adapter<VerseRecyclerViewAdapter.VerseRecyclerViewHolder> {
-    static List<String> verses = new ArrayList<>();
-    static int verseIndex;
-    final String TAG = "MyTag_VRVA";
+import yuku.ambilwarna.AmbilWarnaDialog;
+
+public class VerseRecyclerViewAdapter extends RecyclerView.Adapter<VerseRecyclerViewAdapter.VerseRecyclerViewHolder> implements View.OnCreateContextMenuListener, MenuItem.OnMenuItemClickListener {
+    final String TAG = "MyTag";
+    Map<Integer, Integer> verseColor = new HashMap<>();
+    int verseIndex;
+    ClipboardManager clipboardManager;
+    ClipData clipData;
+    List<Integer> lastDigits = new ArrayList<>();
+    List<String> verses = new ArrayList<>();
+    String verse;
+    int lastDigit = 0;
+    int defaultColor;
     Context context;
     List<String> versesList = new ArrayList<>();
     InputStream inputStream;
+    TextToSpeech textToSpeech;
 
-    public VerseRecyclerViewAdapter(Context context, String fileName) {
+    public VerseRecyclerViewAdapter(Context context, String fileName, TextToSpeech textToSpeech) {
         this.context = context;
+        this.textToSpeech = textToSpeech;
+        defaultColor = context.getColor(R.color.teal_200);
+
+        clipboardManager = (ClipboardManager) this.context.getSystemService(Context.CLIPBOARD_SERVICE);
+
         @SuppressLint("DiscouragedApi")
         int identifier = this.context.getResources().getIdentifier(fileName, "raw", this.context.getPackageName());
         inputStream = this.context.getResources().openRawResource(identifier);
@@ -57,6 +78,19 @@ public class VerseRecyclerViewAdapter extends RecyclerView.Adapter<VerseRecycler
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+
+        for (int j = 0; j < versesList.size(); j++) {
+            String verse = versesList.get(j);
+            for (int i = 0; i < 5; i++) {
+                try {
+                    Integer.parseInt(String.valueOf(verse.charAt(i)));
+                } catch (NumberFormatException e) {
+                    lastDigit = i + 1;
+                    lastDigits.add(lastDigit);
+                    break;
+                }
+            }
+        }
     }
 
     @NonNull
@@ -66,31 +100,35 @@ public class VerseRecyclerViewAdapter extends RecyclerView.Adapter<VerseRecycler
         return new VerseRecyclerViewHolder(view);
     }
 
+    private void readVerse(String verse) {
+        textToSpeech.speak(verse, TextToSpeech.QUEUE_FLUSH, null, null);
+    }
+
+    @SuppressLint("ResourceAsColor")
     @Override
     public void onBindViewHolder(@NonNull VerseRecyclerViewHolder holder, int position) {
-        String verse = versesList.get(position);
-        int lastDigit = 0;
-        boolean digitFound = true;
-        // get verse [number] index
-        while (digitFound) {
-            for (int i = 0; i < 5; i++) {
-                try {
-                    Integer.parseInt(String.valueOf(verse.charAt(i)));
-                } catch (NumberFormatException e) {
-                    lastDigit = i + 1;
-                    digitFound = false;
-                    verses.add(new StringBuilder().append(versesList.get(position)).substring(i + 1));
-                    break;
-                }
-            }
-        }
+        verse = versesList.get(position);
+        verses.add(verse.substring(lastDigits.get(position)));
         Spannable spannable = new SpannableString(verse);
-        spannable.setSpan(new ForegroundColorSpan(Color.rgb(255, 78, 78)), 0, lastDigit, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannable.setSpan(new ForegroundColorSpan(Color.rgb(255, 78, 78)), 0, lastDigits.get(position), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         holder.verseText.setText(spannable, TextView.BufferType.SPANNABLE);
+
         holder.verseCardLayout.setOnLongClickListener(v -> {
             verseIndex = holder.getAdapterPosition();
-            return false;
+            v.setOnCreateContextMenuListener(VerseRecyclerViewAdapter.this);
+            v.showContextMenu(50, 10);
+            return true;
         });
+        Log.i(TAG, "Position: " + position);
+        if (verseColor.containsKey(position)) {
+            Drawable background1 = ResourcesCompat.getDrawable(context.getResources(), R.drawable.circled_rectangle_outline, null);
+            Objects.requireNonNull(background1).setTint(verseColor.get(position));
+            holder.verseCardLayout.setBackground(background1);
+            Log.w(TAG, "Keys: " + verseColor);
+        } else {
+            Drawable background = ResourcesCompat.getDrawable(context.getResources(), R.drawable.circled_rectangle_outline, null);
+            holder.verseCardLayout.setBackground(background);
+        }
     }
 
     @Override
@@ -98,59 +136,56 @@ public class VerseRecyclerViewAdapter extends RecyclerView.Adapter<VerseRecycler
         return versesList.size();
     }
 
-    static class VerseRecyclerViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener, MenuItem.OnMenuItemClickListener {
-        TextToSpeech textToSpeech;
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        menu.add(Menu.NONE, v.getId(), Menu.NONE, "Copy").setOnMenuItemClickListener(this);
+        menu.add(Menu.NONE, v.getId(), Menu.NONE, "Highlight").setOnMenuItemClickListener(item -> {
+            new AmbilWarnaDialog(context, defaultColor, new AmbilWarnaDialog.OnAmbilWarnaListener() {
+                @Override
+                public void onCancel(AmbilWarnaDialog dialog) {
+                }
+
+                @Override
+                public void onOk(AmbilWarnaDialog dialog, int color) {
+                    defaultColor = color;
+                    Drawable background = ResourcesCompat.getDrawable(context.getResources(), R.drawable.circled_rectangle_outline, null);
+                    Objects.requireNonNull(background).setTint(defaultColor);
+                    v.setBackground(background);
+//                    v.setBackgroundColor(defaultColor);
+                    verseColor.put(verseIndex, defaultColor);
+                    Log.d(TAG, "onOk: Added: " + verseIndex);
+                }
+            }).show();
+            return true;
+        });
+        menu.add(Menu.NONE, v.getId(), Menu.NONE, "Read Aloud").setOnMenuItemClickListener(this);
+    }
+
+    @Override
+    public boolean onMenuItemClick(@NonNull MenuItem item) {
+        switch (item.getTitle().toString()) {
+            case "Copy":
+                clipData = ClipData.newPlainText("cpBibleVerse", verses.get(verseIndex));
+                clipboardManager.setPrimaryClip(clipData);
+                Toast.makeText(context, "Verse Copied", Toast.LENGTH_SHORT).show();
+                return true;
+            case "Read Aloud":
+                readVerse(verses.get(verseIndex));
+                Toast.makeText(context, "Reading", Toast.LENGTH_SHORT).show();
+                return true;
+            default:
+                return false;
+        }
+    }
+
+    static class VerseRecyclerViewHolder extends RecyclerView.ViewHolder {
         RelativeLayout verseCardLayout;
-        ClipboardManager clipboardManager;
-        ClipData clipData;
-        boolean canSpeak;
         TextView verseText;
 
         public VerseRecyclerViewHolder(@NonNull View itemView) {
             super(itemView);
             verseText = itemView.findViewById(R.id.verseText);
             verseCardLayout = itemView.findViewById(R.id.verseCardLayout);
-            verseCardLayout.setOnCreateContextMenuListener(this);
-
-            clipboardManager = (ClipboardManager) itemView.getContext().getSystemService(Context.CLIPBOARD_SERVICE);
-
-            textToSpeech = new TextToSpeech(itemView.getContext(), status -> {
-                if (status != TextToSpeech.ERROR) {
-                    canSpeak = true;
-                }
-            });
-            if (canSpeak) {
-                textToSpeech.setSpeechRate(0.01f);
-                textToSpeech.setPitch(1.0f);
-            }
-        }
-
-        @Override
-        public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-            menu.add(Menu.NONE, v.getId(), Menu.NONE, "Copy").setOnMenuItemClickListener(this);
-            menu.add(Menu.NONE, v.getId(), Menu.NONE, "Highlight").setOnMenuItemClickListener(this);
-            menu.add(Menu.NONE, v.getId(), Menu.NONE, "Read Aloud").setOnMenuItemClickListener(this);
-        }
-
-        @Override
-        public boolean onMenuItemClick(@NonNull MenuItem item) {
-            if (item.getTitle().equals("Copy")) {
-                clipData = ClipData.newPlainText("CopiedVerse", verses.get(verseIndex));
-                clipboardManager.setPrimaryClip(clipData);
-                return true;
-            } else if (item.getTitle().equals("Highlight")) {
-                Toast.makeText(itemView.getContext(), "Highlight", Toast.LENGTH_SHORT).show();
-                return true;
-            } else if (item.getTitle().equals("Read Aloud")) {
-                readVerse(verses.get(verseIndex));
-                return true;
-            } else {
-                return false;
-            }
-        }
-
-        private void readVerse(String verse) {
-            textToSpeech.speak(verse, TextToSpeech.QUEUE_FLUSH, null, null);
         }
     }
 }

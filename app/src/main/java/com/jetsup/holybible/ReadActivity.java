@@ -1,6 +1,7 @@
 package com.jetsup.holybible;
 
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,8 +13,10 @@ import java.util.Objects;
 
 public class ReadActivity extends AppCompatActivity {
     String bookTitle;
-    String bookFile;
+    String bookFile, TAG = "MyTag";
     VerseRecyclerViewAdapter verseAdapter;
+    TextToSpeech textToSpeech;
+    boolean canSpeak;
     int bookIndex, readChapter;
     RecyclerView verseRecyclerView;
 
@@ -37,8 +40,25 @@ public class ReadActivity extends AppCompatActivity {
         bookIndex = getIntent().getExtras().getInt("BookIndex");
         Objects.requireNonNull(getSupportActionBar()).setTitle(bookTitle + " " + readChapter);
 
+        textToSpeech = new TextToSpeech(this, status -> {
+            if (status != TextToSpeech.ERROR) {
+                canSpeak = true;
+            }
+        });
+        if (canSpeak) {
+            textToSpeech.setSpeechRate(0.01f);
+            textToSpeech.setPitch(1.0f);
+        }
+
         bookFile = fileAliases[bookIndex] + readChapter;
-        verseAdapter = new VerseRecyclerViewAdapter(this, bookFile);
+        verseAdapter = new VerseRecyclerViewAdapter(this, bookFile, textToSpeech);
         verseRecyclerView.setAdapter(verseAdapter);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        verseAdapter = null;
+        textToSpeech.shutdown();
     }
 }

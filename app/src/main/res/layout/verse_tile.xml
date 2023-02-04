@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="5dp"
+    android:tooltipText="Momo"
     tools:ignore="HardcodedText">
 
     <TextView
@@ -13,7 +14,7 @@
         android:layout_height="wrap_content"
         android:background="@drawable/circled_rectangle_outline"
         android:padding="5dp"
-        android:text="16. For God so loved the world, that he gave his only begotten Son, that whosoever believeth in him should not perish, but have everlasting life."
+        android:text="@string/sample_verse"
         android:textSize="18sp" />
 
 </RelativeLayout>
