@@ -22,4 +22,9 @@
     <style name="Theme.HolyBible.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.HolyBible.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="splashScreenTheme" parent="@style/Theme.AppCompat.NoActionBar">
+        <!--Image for the splash screen-->
+        <item name="android:windowBackground">@drawable/blog_commandline</item>
+    </style>
 </resources>

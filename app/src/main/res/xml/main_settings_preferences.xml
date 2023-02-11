@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <PreferenceCategory
+        app:allowDividerBelow="true"
+        app:title="User Preferences">
+        <EditTextPreference
+            app:dialogMessage="First Name First"
+            app:enableCopying="true"
+            app:iconSpaceReserved="false"
+            app:key="user_name"
+            app:title="First Name"
+            app:useSimpleSummaryProvider="true" />
+        <ListPreference
+            android:entryValues="@array/churches_full"
+            app:entries="@array/churches_acronyms"
+            app:iconSpaceReserved="false"
+            app:key="church"
+            app:title="Church"
+            app:useSimpleSummaryProvider="true" />
+        <ListPreference
+            android:defaultValue="Sunday"
+            android:entryValues="@array/week_days"
+            app:entries="@array/week_days_labels"
+            app:iconSpaceReserved="false"
+            app:key="church_days"
+            app:title="Worship Day(s)"
+            app:useSimpleSummaryProvider="true" />
+        <PreferenceCategory app:title="Notification">
+            <SwitchPreferenceCompat
+                app:iconSpaceReserved="false"
+                app:key="sw_receive_notifications"
+                app:summary="Enable to receive notifications"
+                app:switchTextOff="0"
+                app:switchTextOn="1"
+                app:title="Receive Notifications" />
+            <MultiSelectListPreference
+                android:dependency="sw_receive_notifications"
+                app:entries="@array/week_days"
+                app:entryValues="@array/week_days"
+                app:iconSpaceReserved="false"
+                app:key="notification_frequency"
+                app:title="Frequency" />
+            <EditTextPreference
+                android:dependency="sw_receive_notifications"
+                app:iconSpaceReserved="false"
+                app:key="notification_time"
+                app:title="Notification Time"
+                app:useSimpleSummaryProvider="true" />
+        </PreferenceCategory>
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="App Settings">
+        <SwitchPreferenceCompat
+            app:iconSpaceReserved="false"
+            app:key="dark_theme"
+            app:title="Dark theme" />
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="About">
+        <Preference
+            android:enabled="false"
+            app:iconSpaceReserved="false"
+            app:key="version"
+            app:summary="1.2.0"
+            app:title="Build Version" />
+    </PreferenceCategory>
+
+</androidx.preference.PreferenceScreen>

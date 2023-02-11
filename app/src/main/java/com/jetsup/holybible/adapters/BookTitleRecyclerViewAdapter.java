@@ -1,10 +1,13 @@
 package com.jetsup.holybible.adapters;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,14 +18,45 @@ import com.jetsup.holybible.MainActivity;
 import com.jetsup.holybible.R;
 import com.jetsup.holybible.SelectChapter;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class BookTitleRecyclerViewAdapter extends RecyclerView.Adapter<BookTitleRecyclerViewAdapter.MyBookTitleVH> {
+public class BookTitleRecyclerViewAdapter extends RecyclerView.Adapter<BookTitleRecyclerViewAdapter.MyBookTitleVH> implements Filterable {
     //    final String TAG = "MyTag_BtRVA";
     List<String> bookTitles;
+    List<String> bookTitlesSearchable;
+    private final Filter bookSearchFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<String> probableSearch = new ArrayList<>();
+            if (constraint == null || constraint.length() == 0) {
+                probableSearch.addAll(bookTitlesSearchable);
+            } else {
+                String searchPattern = constraint.toString().toLowerCase().trim();
+                for (String book : bookTitlesSearchable) {
+                    if (book.toLowerCase().startsWith(searchPattern)) {
+                        probableSearch.add(book);
+                    }
+                }
+            }
+            FilterResults searchResult = new FilterResults();
+            searchResult.values = probableSearch;
+
+            return searchResult;
+        }
+
+        @SuppressLint("NotifyDataSetChanged")
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+//            bookTitles.clear(); // UnsupportedOperationException
+            bookTitles = new ArrayList<>();
+            bookTitles.addAll((List) results.values);
+            notifyDataSetChanged();
+        }
+    };
     List<String> bookDescription;
     Context context;
 
@@ -34,9 +68,12 @@ public class BookTitleRecyclerViewAdapter extends RecyclerView.Adapter<BookTitle
     public void loadData(Context context) {
         if (MainActivity.testament == 0) {
             bookTitles = Arrays.asList(context.getResources().getStringArray(R.array.old_testament_books));
+            bookTitlesSearchable = new ArrayList<>(Arrays.asList(context.getResources().getStringArray(R.array.old_testament_books)));
             bookDescription = Arrays.asList(context.getResources().getStringArray(R.array.old_book_description));
+            MainActivity.books = bookTitles.toArray(new String[0]);
         } else if (MainActivity.testament == 1) {
             bookTitles = Arrays.asList(context.getResources().getStringArray(R.array.new_testament_books));
+            bookTitlesSearchable = new ArrayList<>(Arrays.asList(context.getResources().getStringArray(R.array.new_testament_books)));
             bookDescription = Arrays.asList(context.getResources().getStringArray(R.array.new_book_description));
         }
     }
@@ -64,6 +101,11 @@ public class BookTitleRecyclerViewAdapter extends RecyclerView.Adapter<BookTitle
     @Override
     public int getItemCount() {
         return bookTitles.size();
+    }
+
+    @Override
+    public Filter getFilter() {
+        return bookSearchFilter;
     }
 
     static class MyBookTitleVH extends RecyclerView.ViewHolder {
