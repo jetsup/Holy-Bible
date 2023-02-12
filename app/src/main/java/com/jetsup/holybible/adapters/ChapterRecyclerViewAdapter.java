@@ -18,10 +18,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ChapterRecyclerViewAdapter extends RecyclerView.Adapter<ChapterRecyclerViewAdapter.MyChapterViewHolder> {
-    Context context;
-    List<Integer> chapters;
-    String bookTitle;
-    int bookIndex;
+    final Context context;
+    final List<Integer> chapters;
+    final String bookTitle;
+    final int bookIndex;
 
     public ChapterRecyclerViewAdapter(Context context, int bookIndex, String bookTitle, int chaptersToRender) {
         this.context = context;
@@ -46,7 +46,7 @@ public class ChapterRecyclerViewAdapter extends RecyclerView.Adapter<ChapterRecy
         holder.chapterCard.setOnClickListener(v -> {
             Intent intent = new Intent();
             intent.putExtra("Chapter", holder.getAdapterPosition() + 1); // +1 for the zero index
-            intent.putExtra("BookTitle", bookTitle);
+            intent.putExtra("BookModel", bookTitle);
             intent.putExtra("BookIndex", bookIndex);
             intent.setClass(context, ReadActivity.class);
             context.startActivity(intent);
@@ -59,8 +59,8 @@ public class ChapterRecyclerViewAdapter extends RecyclerView.Adapter<ChapterRecy
     }
 
     static class MyChapterViewHolder extends RecyclerView.ViewHolder {
-        CardView chapterCard;
-        TextView chapterNumber;
+        final CardView chapterCard;
+        final TextView chapterNumber;
 
         public MyChapterViewHolder(@NonNull View itemView) {
             super(itemView);

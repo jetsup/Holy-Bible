@@ -36,7 +36,7 @@ public class ReadActivity extends AppCompatActivity {
             fileAliases = getResources().getStringArray(R.array.new_filename_alias);
         }
 
-        bookTitle = getIntent().getExtras().getString("BookTitle");
+        bookTitle = getIntent().getExtras().getString("BookModel");
         readChapter = getIntent().getExtras().getInt("Chapter");
         bookIndex = getIntent().getExtras().getInt("BookIndex");
         Objects.requireNonNull(getSupportActionBar()).setTitle(bookTitle + " " + readChapter);

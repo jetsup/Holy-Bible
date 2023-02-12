@@ -1,6 +1,7 @@
 package com.jetsup.holybible;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -11,7 +12,7 @@ import com.jetsup.holybible.adapters.ChapterRecyclerViewAdapter;
 import java.util.Objects;
 
 public class SelectChapter extends AppCompatActivity {
-    //    final String TAG = "MyTag_SC";
+    final String TAG = "MyTag";
     String bookTitle, aliasName;
     String[] aliasNames = {};
     int[] chapters = {};
@@ -26,7 +27,7 @@ public class SelectChapter extends AppCompatActivity {
         chapterRecyclerView = findViewById(R.id.chapterRecyclerView);
         chapterRecyclerView.setLayoutManager(new GridLayoutManager(this, 4));
 
-        bookTitle = getIntent().getExtras().getString("BookTitle");
+        bookTitle = getIntent().getExtras().getString("BookModel");
         Objects.requireNonNull(getSupportActionBar()).setTitle(bookTitle);
         bookIndex = getIntent().getExtras().getInt("BookIndex"); // 0 for Genesis...
 
@@ -41,7 +42,7 @@ public class SelectChapter extends AppCompatActivity {
         aliasName = aliasNames[bookIndex];
         thisBookChapters = chapters[bookIndex];
 
-        // retrieve the number of chapters in the particular selected book and pass it to the viewHolder
+        Log.w(TAG, "BookIndex: " + bookIndex + " <Title> " + bookTitle + " <Chapters> " + thisBookChapters);
         chapterViewAdapter = new ChapterRecyclerViewAdapter(this, bookIndex, bookTitle, thisBookChapters);
 
         chapterRecyclerView.setAdapter(chapterViewAdapter);

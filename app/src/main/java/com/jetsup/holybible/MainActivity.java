@@ -24,7 +24,7 @@ import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     public static int testament = 0;
-    public static String[] books = new String[]{};
+    //    public static String[] books = new String[]{};
     DrawerLayout activityMainDrawer;
     NavigationView navigationView;
     ActionBarDrawerToggle actionBarDrawerToggle;
@@ -35,13 +35,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-//        ActionBar actionBar = getSupportActionBar();
-//        Objects.requireNonNull(actionBar).setDisplayShowCustomEnabled(true);
-//        LayoutInflater inflater = (LayoutInflater) this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//        View view = inflater.inflate(R.layout.main_activity_search_view, null);
-//        actionBar.setCustomView(view);
-//        actionBar.startActionMode()
 
         activityMainDrawer = findViewById(R.id.activityMainDrawer);
         actionBarDrawerToggle = new ActionBarDrawerToggle(this, activityMainDrawer, R.string.nav_open, R.string.nav_close);
@@ -54,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         bookTitleRecyclerView = findViewById(R.id.bookTitleRecyclerView);
         bookTitleRecyclerView.setLayoutManager(new LinearLayoutManager(this)); // important
+        bookTitleRecyclerView.setHasFixedSize(true);
         titleRecyclerViewAdapter = new BookTitleRecyclerViewAdapter(MainActivity.this);
         bookTitleRecyclerView.setAdapter(titleRecyclerViewAdapter);
     }

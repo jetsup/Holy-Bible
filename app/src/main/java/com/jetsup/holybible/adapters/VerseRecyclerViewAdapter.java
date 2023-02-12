@@ -41,19 +41,19 @@ import yuku.ambilwarna.AmbilWarnaDialog;
 
 public class VerseRecyclerViewAdapter extends RecyclerView.Adapter<VerseRecyclerViewAdapter.VerseRecyclerViewHolder> implements View.OnCreateContextMenuListener, MenuItem.OnMenuItemClickListener {
     //    final String TAG = "MyTag";
-    Map<Integer, Integer> verseColor = new HashMap<>();
+    final Map<Integer, Integer> verseColor = new HashMap<>();
+    final ClipboardManager clipboardManager;
+    final List<Integer> lastDigits = new ArrayList<>();
+    final List<String> verses = new ArrayList<>();
+    final Context context;
+    final List<String> versesList = new ArrayList<>();
+    final InputStream inputStream;
+    final TextToSpeech textToSpeech;
     int verseIndex;
-    ClipboardManager clipboardManager;
     ClipData clipData;
-    List<Integer> lastDigits = new ArrayList<>();
-    List<String> verses = new ArrayList<>();
     String verse;
     int lastDigit = 0;
     int defaultColor;
-    Context context;
-    List<String> versesList = new ArrayList<>();
-    InputStream inputStream;
-    TextToSpeech textToSpeech;
 
     public VerseRecyclerViewAdapter(Context context, String fileName, TextToSpeech textToSpeech) {
         this.context = context;
@@ -190,8 +190,8 @@ public class VerseRecyclerViewAdapter extends RecyclerView.Adapter<VerseRecycler
     }
 
     static class VerseRecyclerViewHolder extends RecyclerView.ViewHolder {
-        RelativeLayout verseCardLayout;
-        TextView verseText;
+        final RelativeLayout verseCardLayout;
+        final TextView verseText;
 
         public VerseRecyclerViewHolder(@NonNull View itemView) {
             super(itemView);

@@ -5,6 +5,7 @@
         android:checkableBehavior="single">
         <item
             android:id="@+id/navOldTestament"
+            android:checked="true"
             android:title="@string/old_testament" />
         <item
             android:id="@+id/navNewTestament"
