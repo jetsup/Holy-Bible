@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="churches_acronyms">
+        <item>K.A.G.</item>
+        <item>P.C.E.A.</item>
+        <item>Full Gospel</item>
+        <item>C.C.C.</item>
+        <item>S.D.A.</item>
+        <item>A.C.K.</item>
+        <item>Catholic</item>
+    </string-array>
+    <string-array name="churches_full">
+        <item>Kenya Assembly God</item>
+        <item>Presbyterian Church of East Africa</item>
+        <item>Full Gospel</item>
+        <item>Christian Community Church</item>
+        <item>Seventh Day Adventist</item>
+        <item>African Community Church</item>
+        <item>Catholic</item>
+    </string-array>
+
+    <string-array name="week_days">
+        <item>Sunday</item>
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+    </string-array>
+    <string-array name="week_days_labels">
+        <item>Sunday (Default)</item>
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+    </string-array>
+
+</resources>
