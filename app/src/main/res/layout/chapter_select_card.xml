@@ -33,6 +33,19 @@
             android:text="150"
             android:textSize="26sp" />
 
+        <ImageView
+            android:id="@+id/highlightIcon"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignEnd="@id/constChapterText"
+            android:layout_alignBottom="@id/chapterNumber"
+            android:layout_marginEnd="-18dp"
+            android:layout_marginBottom="-15dp"
+            android:contentDescription="There are bookmarks available in this chapter"
+            android:src="@drawable/baseline_collections_bookmark_24"
+            android:visibility="gone"
+            app:tint="@color/purple_200" />
+
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

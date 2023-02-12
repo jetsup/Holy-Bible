@@ -52,7 +52,7 @@ public class ReadActivity extends AppCompatActivity {
         }
 
         bookFile = fileAliases[bookIndex] + readChapter;
-        verseAdapter = new VerseRecyclerViewAdapter(this, bookFile, textToSpeech);
+        verseAdapter = new VerseRecyclerViewAdapter(this, bookFile, textToSpeech, bookTitle, readChapter);
         verseRecyclerView.setAdapter(verseAdapter);
     }
 

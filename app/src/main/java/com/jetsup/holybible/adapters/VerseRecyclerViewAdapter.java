@@ -1,5 +1,7 @@
 package com.jetsup.holybible.adapters;
 
+import static com.jetsup.holybible.constants.FileHandlingConstants.SAVED_VERSE_PARENT_FOLDER;
+
 import android.annotation.SuppressLint;
 import android.content.ClipData;
 import android.content.ClipboardManager;
@@ -13,6 +15,7 @@ import android.speech.tts.TextToSpeech;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -29,6 +32,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.jetsup.holybible.R;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -36,11 +42,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 
 import yuku.ambilwarna.AmbilWarnaDialog;
 
-public class VerseRecyclerViewAdapter extends RecyclerView.Adapter<VerseRecyclerViewAdapter.VerseRecyclerViewHolder> implements View.OnCreateContextMenuListener, MenuItem.OnMenuItemClickListener {
-    //    final String TAG = "MyTag";
+public class VerseRecyclerViewAdapter extends RecyclerView.Adapter<VerseRecyclerViewAdapter.VerseRecyclerViewHolder>
+        implements View.OnCreateContextMenuListener, MenuItem.OnMenuItemClickListener {
+    final String TAG = "MyTag";
     final Map<Integer, Integer> verseColor = new HashMap<>();
     final ClipboardManager clipboardManager;
     final List<Integer> lastDigits = new ArrayList<>();
@@ -49,15 +57,24 @@ public class VerseRecyclerViewAdapter extends RecyclerView.Adapter<VerseRecycler
     final List<String> versesList = new ArrayList<>();
     final InputStream inputStream;
     final TextToSpeech textToSpeech;
+    private final int receivedChapter;
+    private final String receivedBook;
     int verseIndex;
     ClipData clipData;
     String verse;
     int lastDigit = 0;
     int defaultColor;
 
-    public VerseRecyclerViewAdapter(Context context, String fileName, TextToSpeech textToSpeech) {
+    public VerseRecyclerViewAdapter(Context context, String fileName, TextToSpeech textToSpeech, String bookTitle, int readChapter) {
         this.context = context;
         this.textToSpeech = textToSpeech;
+        this.receivedBook = bookTitle;
+        this.receivedChapter = readChapter;
+        try {
+            loadSavedHighlightColors();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         defaultColor = context.getColor(R.color.teal_200);
 
         clipboardManager = (ClipboardManager) this.context.getSystemService(Context.CLIPBOARD_SERVICE);
@@ -95,6 +112,28 @@ public class VerseRecyclerViewAdapter extends RecyclerView.Adapter<VerseRecycler
         }
     }
 
+    private void loadSavedHighlightColors() throws IOException {
+        String childPath = SAVED_VERSE_PARENT_FOLDER + "/" + receivedBook + "/" + receivedBook + receivedChapter + ".txt";
+        File readFile = new File(Objects.requireNonNull(context.getExternalCacheDir().getParentFile()).getPath(), childPath);
+
+        if (readFile.exists()) {
+            Log.w(TAG, "Loaded: " + readFile.getPath());
+            try (FileInputStream fileInputStream = new FileInputStream(readFile)) {
+                StringBuilder mapMaker = new StringBuilder();
+                while (fileInputStream.available() > 0) {
+                    int byteRead = fileInputStream.read();
+                    mapMaker.append((char) byteRead);
+                    if ((char) byteRead == '\n') {
+                        String[] value = mapMaker.toString().trim().split(" ");
+                        verseColor.put(Integer.parseInt(value[0]), Integer.parseInt(value[1]));
+                        defaultColor = Integer.parseInt(value[1]);
+                        mapMaker = new StringBuilder();
+                    }
+                }
+            }
+        }
+    }
+
     @NonNull
     @Override
     public VerseRecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -112,7 +151,8 @@ public class VerseRecyclerViewAdapter extends RecyclerView.Adapter<VerseRecycler
         verse = versesList.get(position);
         verses.add(verse.substring(lastDigits.get(position)));
         Spannable spannable = new SpannableString(verse);
-        spannable.setSpan(new ForegroundColorSpan(Color.rgb(255, 78, 78)), 0, lastDigits.get(position), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannable.setSpan(new ForegroundColorSpan(Color.rgb(255, 78, 78)),
+                0, lastDigits.get(position), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         holder.verseText.setText(spannable, TextView.BufferType.SPANNABLE);
 
         holder.verseCardLayout.setOnLongClickListener(v -> {
@@ -164,12 +204,40 @@ public class VerseRecyclerViewAdapter extends RecyclerView.Adapter<VerseRecycler
                     v.setBackground(drawable);
                     v.postInvalidate();
                     verseColor.put(verseIndex, defaultColor);
+                    try {
+                        saveHighlightColor();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }).show();
-            // Add the verse and the color to the shared preference
             return true;
         });
         menu.add(Menu.NONE, v.getId(), Menu.NONE, "Read Aloud").setOnMenuItemClickListener(this);
+    }
+
+    private void saveHighlightColor() throws IOException {
+        String childFolder = SAVED_VERSE_PARENT_FOLDER + "/" + receivedBook;
+        File folder = new File(Objects.requireNonNull(context.getExternalCacheDir().getParentFile()).getPath(),
+                childFolder);
+
+        if (!folder.exists()) {
+            if (!folder.mkdirs()) {
+                Log.e(TAG, "Creating File Folder failed");
+            }
+        }
+        File file = new File(folder + "/" + receivedBook + receivedChapter + ".txt");
+        if (!file.createNewFile()) {
+            Log.w(TAG, "File Exist");
+        }
+        // write the data in the Map instead
+        Set<Integer> verseNumbersKeys = verseColor.keySet();
+        for (int i : verseNumbersKeys) {
+            byte[] dataToWrite = (i + " " + verseColor.get(i) + "\n").getBytes(); // Sample "Verse12 -7865876\n"
+            try (FileOutputStream fileOutputStream = new FileOutputStream(file, true)) {
+                fileOutputStream.write(dataToWrite);
+            }
+        }
     }
 
     @Override
